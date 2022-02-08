@@ -9,7 +9,8 @@
         "web": "expo start --web",
         "eject": "expo eject",
         "format:check": "prettier --check \"**/*.{js,json}\"",
-        "format:write": "prettier --write \"**/*.{js,json}\""
+        "format:write": "prettier --write \"**/*.{js,json}\"",
+        "lint": "eslint \"src/**/*.js\""
     },
     "dependencies": {
         "expo": "~44.0.0",
@@ -21,6 +22,9 @@
     },
     "devDependencies": {
         "@babel/core": "^7.12.9",
+        "eslint": "^8.8.0",
+        "eslint-config-prettier": "^8.3.0",
+        "eslint-plugin-react": "^7.28.0",
         "prettier": "2.5.1"
     },
     "private": true
