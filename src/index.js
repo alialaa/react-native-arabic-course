@@ -1,4 +1,4 @@
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Platform } from "react-native";
 
 export default function App() {
     return (
@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
         justifyContent: "center"
     },
     box: {
-        backgroundColor: "#1ca663",
+        backgroundColor: Platform.OS === "android" ? "red" : "#1ca663",
         width: "50%",
         // height: 70,
         padding: 10,
@@ -34,9 +34,21 @@ const styles = StyleSheet.create({
         elevation: 5
     },
     text: {
-        fontSize: 24,
-        fontWeight: "600",
-        fontStyle: "italic",
+        // fontSize: 24,
+        // fontWeight: "600",
+        // fontStyle: "italic",
+        ...Platform.select({
+            ios: {
+                fontSize: 24,
+                fontWeight: "600",
+                fontStyle: "italic"
+            },
+            android: {
+                fontSize: 20,
+                fontWeight: "300"
+            },
+            default: {}
+        }),
         color: "#fff",
         letterSpacing: 1,
         textAlign: "center",
