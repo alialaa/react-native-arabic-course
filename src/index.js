@@ -19,7 +19,19 @@ const styles = StyleSheet.create({
     },
     box: {
         backgroundColor: "#1ca663",
-        width: "50%"
+        width: "50%",
+        // height: 70,
+        padding: 10,
+        marginTop: 0,
+        borderWidth: 3,
+        borderColor: "#000",
+        borderRadius: 10,
+        opacity: 1,
+        shadowColor: "#000",
+        shadowOffset: { width: 5, height: 5 },
+        shadowRadius: 5,
+        shadowOpacity: 0.6,
+        elevation: 5
     },
     text: {
         fontSize: 24,
