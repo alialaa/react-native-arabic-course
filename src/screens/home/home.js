@@ -6,9 +6,9 @@ export default function Home({ navigation }) {
         <View style={styles.container}>
             <Text>Home Page</Text>
             <Button
-                title="Settings"
+                title="Home 2"
                 onPress={() => {
-                    navigation.navigate("Settings");
+                    navigation.navigate("Home 2");
                 }}
             />
         </View>
