@@ -1,11 +1,16 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Button } from "react-native";
 import styles from "./home.styles";
 
-export default function Home() {
+export default function Home({ navigation }) {
     return (
         <View style={styles.container}>
-            <Image source={require("@assets/favicon.png")} />
             <Text>Home Page</Text>
+            <Button
+                title="Settings"
+                onPress={() => {
+                    navigation.navigate("Settings");
+                }}
+            />
         </View>
     );
 }
