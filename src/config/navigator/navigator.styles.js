@@ -1,3 +1,6 @@
+import { I18nManager } from "react-native";
+const isRTL = I18nManager.isRTL;
+
 export const DarkTheme = {
     dark: true,
     colors: {
@@ -28,11 +31,11 @@ export const commonScreenOptions = {
     },
     headerTintColor: DarkTheme.colors.text,
     headerTitleStyle: {
-        fontFamily: "Roboto_700Bold",
+        fontFamily: isRTL ? "Cairo_700Bold" : "Roboto_700Bold",
         fontSize: 22
     },
     headerBackTitleStyle: {
-        fontFamily: "Roboto_500Medium",
+        fontFamily: isRTL ? "Cairo_600SemiBold" : "Roboto_500Medium",
         fontSize: 14
     }
 };

@@ -12,7 +12,8 @@ module.exports = function (api) {
                         "@components": "./src/components",
                         "@contexts": "./src/contexts",
                         "@utils": "./src/utils",
-                        "@config": "./src/config"
+                        "@config": "./src/config",
+                        "@langs": "./src/langs"
                     }
                 }
             ]

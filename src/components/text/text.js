@@ -1,18 +1,20 @@
+import { I18nManager } from "react-native";
 import PropTypes from "prop-types";
 import { Text as NativeText, TextPropTypes } from "react-native";
 import { useTheme } from "@react-navigation/native";
 
 export default function Text({ children, style, weight, ...props }) {
     const { colors } = useTheme();
-    let fontFamily = "Roboto_400Regular";
+    const isRTL = I18nManager.isRTL;
+    let fontFamily = isRTL ? "Cairo_400Regular" : "Roboto_400Regular";
     if (weight === "400") {
-        fontFamily = "Roboto_400Regular";
+        fontFamily = isRTL ? "Cairo_400Regular" : "Roboto_400Regular";
     }
     if (weight === "600") {
-        fontFamily = "Roboto_500Medium";
+        fontFamily = isRTL ? "Cairo_600SemiBold" : "Roboto_500Medium";
     }
     if (weight === "700") {
-        fontFamily = "Roboto_700Bold";
+        fontFamily = isRTL ? "Cairo_700Bold" : "Roboto_700Bold";
     }
     return (
         <NativeText

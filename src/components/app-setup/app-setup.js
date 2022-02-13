@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { reloadAsync } from "expo-updates";
+import i18n from "@langs";
 import { Roboto_400Regular, Roboto_500Medium, Roboto_700Bold } from "@expo-google-fonts/roboto";
 import { Cairo_400Regular, Cairo_600SemiBold, Cairo_700Bold } from "@expo-google-fonts/cairo";
 
@@ -20,8 +21,9 @@ export default function AppSetup({ children }) {
     });
     useEffect(() => {
         const loadLanguage = async () => {
-            const lang = "en";
+            const lang = "ar";
             const isRTL = I18nManager.isRTL;
+            i18n.locale = lang;
             if (lang === "en" && isRTL) {
                 await I18nManager.forceRTL(false);
                 await reloadAsync();
