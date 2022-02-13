@@ -2,15 +2,15 @@ import PropTypes from "prop-types";
 import { Text as NativeText, TextPropTypes } from "react-native";
 
 export default function Text({ children, style, weight, ...props }) {
-    let fontFamily = "Cairo_400Regular";
+    let fontFamily = "Roboto_400Regular";
     if (weight === "400") {
-        fontFamily = "Cairo_400Regular";
+        fontFamily = "Roboto_400Regular";
     }
     if (weight === "600") {
-        fontFamily = "Cairo_600SemiBold";
+        fontFamily = "Roboto_500Medium";
     }
     if (weight === "700") {
-        fontFamily = "Cairo_700Bold";
+        fontFamily = "Roboto_700Bold";
     }
     return (
         <NativeText
