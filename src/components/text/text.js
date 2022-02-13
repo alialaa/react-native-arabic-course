@@ -1,7 +1,9 @@
 import PropTypes from "prop-types";
 import { Text as NativeText, TextPropTypes } from "react-native";
+import { useTheme } from "@react-navigation/native";
 
 export default function Text({ children, style, weight, ...props }) {
+    const { colors } = useTheme();
     let fontFamily = "Roboto_400Regular";
     if (weight === "400") {
         fontFamily = "Roboto_400Regular";
@@ -16,7 +18,8 @@ export default function Text({ children, style, weight, ...props }) {
         <NativeText
             style={[
                 {
-                    fontFamily
+                    fontFamily,
+                    color: colors.text
                 },
                 style
             ]}
