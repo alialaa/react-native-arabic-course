@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Home, Settings } from "@screens";
 import { DarkTheme, LightTheme, commonScreenOptions } from "./navigator.styles";
+import tabBarScreenOptions from "./tabbar-screen-options";
 
 const HomeStack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -22,7 +23,7 @@ export default function Navigator() {
     const scheme = useColorScheme();
     return (
         <NavigationContainer theme={scheme === "dark" ? DarkTheme : LightTheme}>
-            <Tab.Navigator screenOptions={{ ...commonScreenOptions, headerShown: false }}>
+            <Tab.Navigator screenOptions={tabBarScreenOptions}>
                 <Tab.Screen name="Home" component={HomeStackNavigator} />
                 <Tab.Screen name="Settings" component={Settings} options={{ headerShown: true }} />
             </Tab.Navigator>
