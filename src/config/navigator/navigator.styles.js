@@ -2,27 +2,27 @@ import { I18nManager } from "react-native";
 const isRTL = I18nManager.isRTL;
 
 export const DarkTheme = {
-    dark: true,
     colors: {
-        background: "#120d1c",
-        border: "#1a1429",
-        card: "#221a36",
+        background: "#0d0a14",
+        border: "#1d162e",
+        card: "#151021",
         notification: "#ff443a",
         primary: "#bb29eb",
         text: "#dafaf7"
-    }
+    },
+    dark: true
 };
 
 export const LightTheme = {
-    dark: false,
     colors: {
-        background: "#e1d4fa",
-        border: "#e3d9fa",
+        background: "#dad1ed",
+        border: "#d1c8e8",
         card: "#f1ebff",
         notification: "#ff443a",
         primary: "#bb29eb",
         text: "#161021"
-    }
+    },
+    dark: false
 };
 
 export const commonScreenOptions = {

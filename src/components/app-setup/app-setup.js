@@ -1,16 +1,19 @@
-import { useEffect } from "react";
+import { useEffect, useContext } from "react";
 import { I18nManager } from "react-native";
 import PropTypes from "prop-types";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { reloadAsync } from "expo-updates";
 import i18n from "@langs";
+import { SettingsContext } from "@contexts";
 import { Roboto_400Regular, Roboto_500Medium, Roboto_700Bold } from "@expo-google-fonts/roboto";
 import { Cairo_400Regular, Cairo_600SemiBold, Cairo_700Bold } from "@expo-google-fonts/cairo";
 
 I18nManager.allowRTL(true);
 
 export default function AppSetup({ children }) {
+    const { settings } = useContext(SettingsContext);
+
     const [fontsLoaded] = useFonts({
         Roboto_400Regular,
         Roboto_500Medium,
@@ -21,7 +24,7 @@ export default function AppSetup({ children }) {
     });
     useEffect(() => {
         const loadLanguage = async () => {
-            const lang = "ar";
+            const lang = settings.lang;
             const isRTL = I18nManager.isRTL;
             i18n.locale = lang;
             if (lang === "en" && isRTL) {
@@ -34,7 +37,7 @@ export default function AppSetup({ children }) {
             }
         };
         loadLanguage();
-    }, []);
+    }, [settings.lang]);
     return fontsLoaded ? children : <AppLoading />;
 }
 
