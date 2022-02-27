@@ -8,6 +8,13 @@ export default function Settings() {
     return (
         <View style={styles.container}>
             <Text>{settings.lang}</Text>
+            <Text>{settings.units}</Text>
+            <Button
+                title="Toggle Units"
+                onPress={() => {
+                    setSettings({ units: settings.units === "metric" ? "imperial" : "metric" });
+                }}
+            />
             <Button
                 title="English"
                 onPress={() => {
