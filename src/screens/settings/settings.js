@@ -1,5 +1,5 @@
-import { View, ScrollView } from "react-native";
-import { Text, Card } from "@components";
+import { ScrollView } from "react-native";
+import { Text, Card, Button } from "@components";
 import { useSettings } from "@contexts";
 import styles from "./settings.styles";
 
@@ -8,7 +8,7 @@ export default function Settings() {
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Card>
-                <Text>Some text</Text>
+                <Button title="Reload App" onPress={() => alert(true)} />
             </Card>
         </ScrollView>
     );
