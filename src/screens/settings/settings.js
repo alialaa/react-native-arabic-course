@@ -19,7 +19,7 @@ export default function Settings() {
                             value: "dark"
                         }
                     ]}
-                    value="light"
+                    value="dark"
                     onValueChange={value => console.log(value)}
                 />
             </Card>
