@@ -1,5 +1,7 @@
-import { View, TouchableWithoutFeedback } from "react-native";
+import PropTypes from "prop-types";
+import { View, TouchableWithoutFeedback, ViewPropTypes } from "react-native";
 import { useTheme } from "@react-navigation/native";
+import { selectionAsync } from "expo-haptics";
 import Text from "../text/text";
 import styles from "./choices.styles";
 
@@ -8,7 +10,15 @@ export default function Choices({ style, items, value, onValueChange }) {
     return (
         <View style={[styles.container, style]}>
             {items.map(item => (
-                <TouchableWithoutFeedback key={item.value}>
+                <TouchableWithoutFeedback
+                    key={item.value}
+                    onPress={() => {
+                        selectionAsync();
+                        if (onValueChange) {
+                            onValueChange(item.value);
+                        }
+                    }}
+                >
                     <View
                         style={[
                             styles.item,
@@ -35,3 +45,15 @@ export default function Choices({ style, items, value, onValueChange }) {
         </View>
     );
 }
+
+Choices.propTypes = {
+    style: ViewPropTypes.style,
+    items: PropTypes.arrayOf(
+        PropTypes.shape({
+            label: PropTypes.string.isRequired,
+            value: PropTypes.string.isRequired
+        })
+    ).isRequired,
+    value: PropTypes.string,
+    onValueChange: PropTypes.func
+};
