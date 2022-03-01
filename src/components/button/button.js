@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { TouchableOpacity, ViewPropTypes } from "react-native";
-import { Text } from "@components";
+import Text from "../text/text";
 import { useTheme } from "@react-navigation/native";
 import styles from "./button.styles";
 

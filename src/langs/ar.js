@@ -15,6 +15,18 @@ export default {
         }
     },
     settings: {
-        title: "الاعدادات"
+        title: "الاعدادات",
+        useDeviceColorScheme: "استخدام نمط الالوان من اعدادات الجهاز",
+        colorScheme: "نمط الالوان",
+        dark: "داكن",
+        light: "فاتح",
+        units: "نظام الوحدات",
+        metric: "متري",
+        imperial: "إمبراطوري",
+        language: "اللغة",
+        english: "الانجليزية",
+        arabic: "العربية",
+        languageInfo: "يتطلب تغيير اللغة إعادة تحميل التطبيق.",
+        reload: "إعادة تحميل التطبيق"
     }
 };

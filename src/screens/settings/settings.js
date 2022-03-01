@@ -1,29 +1,98 @@
 import { useState } from "react";
-import { ScrollView } from "react-native";
-import { Card, Choices } from "@components";
+import { ScrollView, Switch, View } from "react-native";
+import { useTheme } from "@react-navigation/native";
+import { Card, Text, Choices, Button } from "@components";
 import { useSettings } from "@contexts";
+import i18n from "@langs";
 import styles from "./settings.styles";
 
 export default function Settings() {
     const { settings, setSettings } = useSettings();
-    const [colorScheme, setColorScheme] = useState("light");
+    const { colors } = useTheme();
+    const [useDeviceColorScheme, setUseDeviceColorScheme] = useState(false);
     return (
         <ScrollView contentContainerStyle={styles.container}>
-            <Card>
+            <Card style={styles.card}>
+                <View
+                    style={{
+                        flexDirection: "row",
+                        alignItems: "center",
+                        justifyContent: "space-between"
+                    }}
+                >
+                    <Text style={styles.label}>{i18n.t("settings.useDeviceColorScheme")}</Text>
+                    <Switch
+                        trackColor={{
+                            false: colors.background,
+                            true: colors.primary
+                        }}
+                        thumbColor="#fff"
+                        ios_backgroundColor={colors.background}
+                        value={useDeviceColorScheme}
+                        onValueChange={value => setUseDeviceColorScheme(value)}
+                    />
+                </View>
+            </Card>
+            {!useDeviceColorScheme && (
+                <Card style={styles.card}>
+                    <Text style={styles.label}>{i18n.t("settings.colorScheme")}</Text>
+                    <Choices
+                        style={styles.choices}
+                        value="light"
+                        onValueChange={value => console.log(value)}
+                        items={[
+                            {
+                                label: i18n.t("settings.light"),
+                                value: "light"
+                            },
+                            {
+                                label: i18n.t("settings.dark"),
+                                value: "dark"
+                            }
+                        ]}
+                    />
+                </Card>
+            )}
+            <Card style={styles.card}>
+                <Text style={styles.label}>{i18n.t("settings.units")}</Text>
                 <Choices
+                    style={styles.choices}
+                    value="metric"
+                    onValueChange={value => console.log(value)}
                     items={[
                         {
-                            label: "Light",
-                            value: "light"
+                            label: i18n.t("settings.metric"),
+                            value: "metric"
                         },
                         {
-                            label: "Dark",
-                            value: "dark"
+                            label: i18n.t("settings.imperial"),
+                            value: "imperial"
                         }
                     ]}
-                    value={colorScheme}
-                    onValueChange={value => setColorScheme(value)}
                 />
+            </Card>
+
+            <Card style={styles.card}>
+                <Text style={styles.label}>{i18n.t("settings.language")}</Text>
+                <Choices
+                    style={styles.choices}
+                    value="en"
+                    onValueChange={value => console.log(value)}
+                    items={[
+                        {
+                            label: i18n.t("settings.english"),
+                            value: "en"
+                        },
+                        {
+                            label: i18n.t("settings.arabic"),
+                            value: "ar"
+                        }
+                    ]}
+                />
+                <View style={{ marginTop: 10 }}>
+                    <Text style={{ marginBottom: 10 }}>{i18n.t("settings.languageInfo")}</Text>
+                    <Button title={i18n.t("settings.reload")} />
+                </View>
             </Card>
         </ScrollView>
     );

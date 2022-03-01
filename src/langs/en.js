@@ -15,6 +15,18 @@ export default {
         }
     },
     settings: {
-        title: "Settings"
+        title: "Settings",
+        useDeviceColorScheme: "Use Device Color Scheme Settings",
+        colorScheme: "Color Scheme",
+        dark: "Dark",
+        light: "Light",
+        units: "Units System",
+        metric: "Metric",
+        imperial: "Imperial",
+        language: "Language",
+        english: "English",
+        arabic: "Arabic",
+        languageInfo: "Changing language requires reloading the app.",
+        reload: "Reload App"
     }
 };
