@@ -21,7 +21,8 @@ export default function Text({ children, style, weight, ...props }) {
             style={[
                 {
                     fontFamily,
-                    color: colors.text
+                    color: colors.text,
+                    writingDirection: isRTL ? "rtl" : "ltr"
                 },
                 style
             ]}

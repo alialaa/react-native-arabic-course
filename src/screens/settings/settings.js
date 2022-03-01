@@ -9,7 +9,9 @@ import styles from "./settings.styles";
 export default function Settings() {
     const { settings, setSettings } = useSettings();
     const { colors } = useTheme();
-    const [useDeviceColorScheme, setUseDeviceColorScheme] = useState(false);
+
+    const [lang, setLang] = useState(settings.lang);
+
     return (
         <ScrollView contentContainerStyle={styles.container}>
             <Card style={styles.card}>
@@ -28,18 +30,22 @@ export default function Settings() {
                         }}
                         thumbColor="#fff"
                         ios_backgroundColor={colors.background}
-                        value={useDeviceColorScheme}
-                        onValueChange={value => setUseDeviceColorScheme(value)}
+                        value={settings.colorScheme === "auto"}
+                        onValueChange={() => {
+                            setSettings({
+                                colorScheme: settings.colorScheme === "auto" ? "light" : "auto"
+                            });
+                        }}
                     />
                 </View>
             </Card>
-            {!useDeviceColorScheme && (
+            {settings.colorScheme !== "auto" && (
                 <Card style={styles.card}>
                     <Text style={styles.label}>{i18n.t("settings.colorScheme")}</Text>
                     <Choices
                         style={styles.choices}
-                        value="light"
-                        onValueChange={value => console.log(value)}
+                        value={settings.colorScheme}
+                        onValueChange={value => setSettings({ colorScheme: value })}
                         items={[
                             {
                                 label: i18n.t("settings.light"),
@@ -57,8 +63,8 @@ export default function Settings() {
                 <Text style={styles.label}>{i18n.t("settings.units")}</Text>
                 <Choices
                     style={styles.choices}
-                    value="metric"
-                    onValueChange={value => console.log(value)}
+                    value={settings.units}
+                    onValueChange={value => setSettings({ units: value })}
                     items={[
                         {
                             label: i18n.t("settings.metric"),
@@ -76,8 +82,8 @@ export default function Settings() {
                 <Text style={styles.label}>{i18n.t("settings.language")}</Text>
                 <Choices
                     style={styles.choices}
-                    value="en"
-                    onValueChange={value => console.log(value)}
+                    value={lang}
+                    onValueChange={value => setLang(value)}
                     items={[
                         {
                             label: i18n.t("settings.english"),
@@ -89,10 +95,15 @@ export default function Settings() {
                         }
                     ]}
                 />
-                <View style={{ marginTop: 10 }}>
-                    <Text style={{ marginBottom: 10 }}>{i18n.t("settings.languageInfo")}</Text>
-                    <Button title={i18n.t("settings.reload")} />
-                </View>
+                {lang !== settings.lang && (
+                    <View style={{ marginTop: 10 }}>
+                        <Text style={{ marginBottom: 10 }}>{i18n.t("settings.languageInfo")}</Text>
+                        <Button
+                            title={i18n.t("settings.reload")}
+                            onPress={() => setSettings({ lang })}
+                        />
+                    </View>
+                )}
             </Card>
         </ScrollView>
     );
