@@ -14,6 +14,7 @@ export function useLocation() {
 export function LocationProvider(props) {
     const [location, setLocation] = useState(null);
     const [status, requestPermission] = useForegroundPermissions();
+
     const granted = status && status.granted;
 
     const getLocation = async () => {

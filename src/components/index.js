@@ -3,3 +3,4 @@ export { default as AppSetup } from "./app-setup/app-setup";
 export { default as Card } from "./card/card";
 export { default as Button } from "./button/button";
 export { default as Choices } from "./choices/choices";
+export { default as FullWeatherCard } from "./full-weather-card/full-weather-card";

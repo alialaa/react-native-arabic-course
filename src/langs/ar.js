@@ -4,6 +4,7 @@ export default {
     ...commonAr.ar,
     errors: {
         error: "خطأ",
+        generalError: "لقد حدث خطأ",
         saveSettings: "حدث خطأ أثناء حفظ الإعدادات."
     },
     home: {

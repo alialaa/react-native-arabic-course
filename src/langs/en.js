@@ -4,6 +4,7 @@ export default {
     ...commonEn.en,
     errors: {
         error: "Error!",
+        generalError: "An error has occurred",
         saveSettings: "An error has occurred while saving settings."
     },
     home: {
