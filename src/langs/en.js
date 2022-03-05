@@ -7,12 +7,7 @@ export default {
         saveSettings: "An error has occurred while saving settings."
     },
     home: {
-        title: "Home",
-        notifications: {
-            zero: "You have no notifications.",
-            one: "You have one notification.",
-            other: "You have %{count} notifications."
-        }
+        title: "Location"
     },
     settings: {
         title: "Settings",

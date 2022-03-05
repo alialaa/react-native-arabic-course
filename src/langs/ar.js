@@ -7,12 +7,7 @@ export default {
         saveSettings: "حدث خطأ أثناء حفظ الإعدادات."
     },
     home: {
-        title: "الرئيسية",
-        notifications: {
-            zero: "لا توجد لديك اشعارات.",
-            one: "لديك اشعار واحد.",
-            other: "لديك %{count} اشعارات."
-        }
+        title: "موقعك"
     },
     settings: {
         title: "الاعدادات",
