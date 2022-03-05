@@ -1,12 +1,14 @@
 import { AppSetup } from "@components";
 import { Navigator } from "@config";
-import { SettingsProvider } from "@contexts";
+import { SettingsProvider, LocationProvider } from "@contexts";
 
 export default function App() {
     return (
         <SettingsProvider>
             <AppSetup>
-                <Navigator />
+                <LocationProvider>
+                    <Navigator />
+                </LocationProvider>
             </AppSetup>
         </SettingsProvider>
     );
