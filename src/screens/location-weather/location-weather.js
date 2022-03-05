@@ -3,6 +3,7 @@ import { View, ActivityIndicator } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useTheme } from "@react-navigation/native";
 import { useLocation, useSettings } from "@contexts";
+import { openweathermap } from "@utils";
 import styles from "./location-weather.styles";
 import NoPermissions from "./no-permissions";
 
@@ -14,11 +15,21 @@ export default function LocationWeather() {
     useEffect(() => {
         if (location) {
             const { latitude, longitude } = location.coords;
-            fetch(
-                `https://api.openweathermap.org/data/2.5/onecall?appid=76fdf6a2b46bc8e133d83a69062b7338&lat=${latitude}&lon=${longitude}&units=${settings.units}&lang=${settings.lang}&exclude=minutely`
-            )
-                .then(res => res.json())
-                .then(res => console.log(res.current));
+
+            openweathermap
+                .get("onecall", {
+                    params: {
+                        // lat: latitude,
+                        lon: longitude,
+                        units: settings.units,
+                        lang: settings.lang,
+                        exclude: "minutely"
+                    }
+                })
+                .then(res => console.log(res.data.current))
+                .catch(err => {
+                    console.log(err.response.data.message);
+                });
         }
     }, [location, settings.units]);
 
