@@ -7,7 +7,9 @@ export default {
         saveSettings: "حدث خطأ أثناء حفظ الإعدادات."
     },
     home: {
-        title: "موقعك"
+        title: "موقعك",
+        permissionError: "يرجى السماح للتطبيق باستخدام موقعك الحالي.",
+        openSettings: "أفتح الإعدادات"
     },
     settings: {
         title: "الاعدادات",

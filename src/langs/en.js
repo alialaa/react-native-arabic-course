@@ -7,7 +7,9 @@ export default {
         saveSettings: "An error has occurred while saving settings."
     },
     home: {
-        title: "Location"
+        title: "Location",
+        permissionError: "Please allow the app to use your current location.",
+        openSettings: "Open Settings"
     },
     settings: {
         title: "Settings",

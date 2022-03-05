@@ -1,12 +1,11 @@
 import { useColorScheme } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { LocationWeather, Settings } from "@screens";
 import { useSettings } from "@contexts";
 import i18n from "@langs";
-import { DarkTheme, LightTheme, commonScreenOptions } from "./navigator.styles";
+import { DarkTheme, LightTheme } from "./navigator.styles";
 import tabBarScreenOptions from "./tabbar-screen-options";
 
 const Tab = createBottomTabNavigator();
