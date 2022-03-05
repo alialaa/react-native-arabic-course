@@ -3,6 +3,9 @@ module.exports = {
         es2021: true,
         node: true
     },
+    globals: {
+        fetch: false
+    },
     extends: ["eslint:recommended", "plugin:react/recommended", "prettier"],
     parserOptions: {
         ecmaFeatures: {
