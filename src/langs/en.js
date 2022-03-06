@@ -7,6 +7,9 @@ export default {
         generalError: "An error has occurred",
         saveSettings: "An error has occurred while saving settings."
     },
+    weather: {
+        yourLocation: "Your Location"
+    },
     home: {
         title: "Location",
         permissionError: "Please allow the app to use your current location.",

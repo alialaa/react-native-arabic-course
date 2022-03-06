@@ -7,6 +7,9 @@ export default {
         generalError: "لقد حدث خطأ",
         saveSettings: "حدث خطأ أثناء حفظ الإعدادات."
     },
+    weather: {
+        yourLocation: "موقعك الحالى"
+    },
     home: {
         title: "موقعك",
         permissionError: "يرجى السماح للتطبيق باستخدام موقعك الحالي.",

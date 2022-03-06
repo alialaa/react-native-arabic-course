@@ -53,10 +53,15 @@ export default function LocationWeather() {
                 <StatusBar style="auto" />
             </View>
         );
-
     return (
         <View style={styles.container}>
-            {locationData && <FullWeatherCard locationData={locationData} />}
+            {locationData && (
+                <FullWeatherCard
+                    locationData={locationData}
+                    locationName={location.locationNames && location.locationNames[settings.lang]}
+                    lang={settings.lang}
+                />
+            )}
         </View>
     );
 }
