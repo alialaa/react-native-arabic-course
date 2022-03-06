@@ -5,3 +5,4 @@ export { default as getBgColor } from "./get-bg-color";
 export { default as toArabicNumerals } from "./to-arabic-numerals";
 export { default as displayNumber } from "./display-number";
 export { default as displayTemperature } from "./display-temperature";
+export { default as getWeatherIcon } from "./get-weather-icon";

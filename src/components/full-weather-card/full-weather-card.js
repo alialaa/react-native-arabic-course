@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
-import { ScrollView, View } from "react-native";
+import { ScrollView, View, Image } from "react-native";
 import moment from "moment-timezone";
-import { getBgColor, displayTemperature } from "@utils";
+import { getBgColor, displayTemperature, getWeatherIcon } from "@utils";
 import Text from "../text/text";
 import i18n from "@langs";
 
@@ -16,6 +16,10 @@ export default function FullWeatherCard({ locationData, locationName, lang }) {
             <Text>{locationDate.format("dddd, D MMMM")}</Text>
             <Text>{locationDate.format("HH:mm")}</Text>
             <Text>{displayTemperature(temp, lang)}</Text>
+            <Image
+                style={{ width: 50, height: 50 }}
+                source={getWeatherIcon(weather[0].icon).source}
+            />
             <Text>{weather[0].description}</Text>
             <View style={{ flexDirection: "row" }}>
                 <Text>{displayTemperature(daily[0].temp.max, lang)}</Text>
