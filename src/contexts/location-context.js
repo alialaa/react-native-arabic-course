@@ -1,5 +1,6 @@
 import { createContext, useState, useEffect, useContext } from "react";
 import { useForegroundPermissions, Accuracy, getCurrentPositionAsync } from "expo-location";
+import { geocoding } from "@utils";
 
 const LocationContext = createContext();
 
@@ -22,7 +23,24 @@ export function LocationProvider(props) {
             accuracy: Accuracy.Highest,
             maximumAge: 10000
         });
-        setLocation(location);
+        try {
+            const locationName = await geocoding.get("reverse", {
+                params: {
+                    lat: location.coords.latitude,
+                    lon: location.coords.longitude
+                }
+            });
+            if (locationName.data.length > 0) {
+                setLocation({
+                    ...location,
+                    locationNames: { ...locationName.data[0].local_names }
+                });
+            } else {
+                setLocation(location);
+            }
+        } catch {
+            setLocation(location);
+        }
     };
 
     useEffect(() => {
