@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import { ScrollView, View } from "react-native";
-import { getBgColor, displayTemperature } from "@utils";
+import moment from "moment-timezone";
+import { getBgColor } from "@utils";
 import Text from "../text/text";
 
 export default function FullWeatherCard({ locationData }) {
@@ -9,7 +10,7 @@ export default function FullWeatherCard({ locationData }) {
     return (
         <ScrollView>
             <View style={{ height: 300, backgroundColor: getBgColor(dt, sunrise, sunset) }} />
-            <Text>{displayTemperature(23.5, "ar")}</Text>
+            <Text>{moment(new Date()).format("dddd, D MMMM")}</Text>
         </ScrollView>
     );
 }

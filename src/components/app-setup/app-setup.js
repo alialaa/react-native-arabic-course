@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 import { useFonts } from "expo-font";
 import AppLoading from "expo-app-loading";
 import { reloadAsync } from "expo-updates";
+import moment from "moment-timezone";
+import "moment/locale/ar";
 import i18n from "@langs";
 import { useSettings } from "@contexts";
 import { Roboto_400Regular, Roboto_500Medium, Roboto_700Bold } from "@expo-google-fonts/roboto";
@@ -27,6 +29,7 @@ export default function AppSetup({ children }) {
             const lang = settings.lang;
             const isRTL = I18nManager.isRTL;
             i18n.locale = lang;
+            moment.locale(lang);
             if (lang === "en" && isRTL) {
                 await I18nManager.forceRTL(false);
                 await reloadAsync();
