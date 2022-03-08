@@ -41,6 +41,9 @@ const styles = StyleSheet.create({
         tintColor: "#fff",
         marginRight: 10,
         resizeMode: "contain"
+    },
+    hourlyCard: {
+        margin: 20
     }
 });
 

@@ -4,9 +4,9 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import { getBgColor } from "@utils";
 import LocationName from "./location-name";
 import CurrentWeather from "./current-weather";
-
+import HourlyWeather from "./hourly-weather";
 export default function FullWeatherCard({ locationData, locationName, lang }) {
-    const { current } = locationData;
+    const { current, hourly, timezone } = locationData;
     const { dt, sunrise, sunset } = current;
 
     return (
@@ -20,6 +20,7 @@ export default function FullWeatherCard({ locationData, locationName, lang }) {
 
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <CurrentWeather locationData={locationData} lang={lang} />
+                <HourlyWeather data={hourly} lang={lang} timezone={timezone} />
             </ScrollView>
         </View>
     );
