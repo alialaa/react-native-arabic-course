@@ -1,4 +1,5 @@
 import { createContext, useState, useEffect, useContext } from "react";
+import { AppState } from "react-native";
 import { useForegroundPermissions, Accuracy, getCurrentPositionAsync } from "expo-location";
 import { geocoding } from "@utils";
 
@@ -47,9 +48,19 @@ export function LocationProvider(props) {
         requestPermission();
     }, []);
     useEffect(() => {
+        const handleAppStateChange = nextAppState => {
+            if (nextAppState === "active") {
+                getLocation();
+            }
+        };
         if (granted) {
             getLocation();
+
+            AppState.addEventListener("change", handleAppStateChange);
         }
+        return () => {
+            AppState.removeEventListener("change", handleAppStateChange);
+        };
     }, [granted]);
     return (
         <LocationContext.Provider
