@@ -43,7 +43,23 @@ const styles = StyleSheet.create({
         resizeMode: "contain"
     },
     hourlyCard: {
-        margin: 20
+        margin: 20,
+        paddingHorizontal: 0
+    },
+    hourlyItem: {
+        alignItems: "center",
+        justifyContent: "space-between",
+        marginHorizontal: 10
+    },
+    hourlyTime: {
+        opacity: 0.75
+    },
+    hourlyTemp: {
+        fontSize: 15
+    },
+    hourlyIcon: {
+        marginTop: 10,
+        marginBottom: 7
     }
 });
 
