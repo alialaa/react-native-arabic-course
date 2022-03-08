@@ -8,7 +8,9 @@ export default {
         saveSettings: "حدث خطأ أثناء حفظ الإعدادات."
     },
     weather: {
-        yourLocation: "موقعك الحالى"
+        yourLocation: "موقعك الحالى",
+        today: "اليوم",
+        dailyTitle: "الاسبوع القادم"
     },
     home: {
         title: "موقعك",

@@ -5,8 +5,9 @@ import { getBgColor } from "@utils";
 import LocationName from "./location-name";
 import CurrentWeather from "./current-weather";
 import HourlyWeather from "./hourly-weather";
+import DailyWeather from "./daily-weather";
 export default function FullWeatherCard({ locationData, locationName, lang }) {
-    const { current, hourly, timezone } = locationData;
+    const { current, hourly, timezone, daily } = locationData;
     const { dt, sunrise, sunset } = current;
 
     return (
@@ -21,6 +22,7 @@ export default function FullWeatherCard({ locationData, locationName, lang }) {
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <CurrentWeather locationData={locationData} lang={lang} />
                 <HourlyWeather data={hourly} lang={lang} timezone={timezone} />
+                <DailyWeather data={daily} lang={lang} timezone={timezone} />
             </ScrollView>
         </View>
     );

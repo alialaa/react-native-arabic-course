@@ -60,6 +60,10 @@ const styles = StyleSheet.create({
     hourlyIcon: {
         marginTop: 10,
         marginBottom: 7
+    },
+    dailyCard: {
+        margin: 20,
+        marginTop: 0
     }
 });
 

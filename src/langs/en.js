@@ -8,7 +8,9 @@ export default {
         saveSettings: "An error has occurred while saving settings."
     },
     weather: {
-        yourLocation: "Your Location"
+        yourLocation: "Your Location",
+        today: "Today",
+        dailyTitle: "Next Week"
     },
     home: {
         title: "Location",
