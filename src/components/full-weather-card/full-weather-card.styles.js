@@ -84,6 +84,31 @@ const styles = StyleSheet.create({
     },
     dailyText: {
         fontSize: 16
+    },
+    gridRow: {
+        flexDirection: "row",
+        marginHorizontal: 10,
+        marginBottom: 20
+    },
+    gridItem: {
+        width: "50%",
+        paddingHorizontal: 10
+    },
+    infoCard: {
+        borderTopWidth: 2
+    },
+    infoCardTitle: {
+        fontSize: 16,
+        opacity: 0.7,
+        marginBottom: 20
+    },
+    infoCardValue: {
+        fontSize: 26
+    },
+    windArrow: {
+        width: 25,
+        height: 25,
+        marginLeft: 10
     }
 });
 

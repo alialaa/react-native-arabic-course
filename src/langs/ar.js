@@ -10,7 +10,14 @@ export default {
     weather: {
         yourLocation: "موقعك الحالى",
         today: "اليوم",
-        dailyTitle: "الاسبوع القادم"
+        dailyTitle: "الاسبوع القادم",
+        visibility: "الرؤية",
+        feelsLike: "الشعور",
+        humidity: "الرطوبة",
+        windSpeed: "سرعة الريح",
+        km: "كم",
+        kmh: "كم/س",
+        mph: "ميل/س"
     },
     home: {
         title: "موقعك",

@@ -10,7 +10,14 @@ export default {
     weather: {
         yourLocation: "Your Location",
         today: "Today",
-        dailyTitle: "Next Week"
+        dailyTitle: "Next Week",
+        visibility: "Visibility",
+        feelsLike: "Feels Like",
+        humidity: "Humidity",
+        windSpeed: "Wind Speed",
+        km: "km",
+        kmh: "km/h",
+        mph: "m/h"
     },
     home: {
         title: "Location",
