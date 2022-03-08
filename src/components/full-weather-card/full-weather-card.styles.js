@@ -63,7 +63,27 @@ const styles = StyleSheet.create({
     },
     dailyCard: {
         margin: 20,
-        marginTop: 0
+        marginTop: 0,
+        borderTopWidth: 4
+    },
+    dailyTitle: {
+        fontSize: 19,
+        marginBottom: 5
+    },
+    dailyItem: {
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingVertical: 5
+    },
+    dateIconContainer: {
+        flexDirection: "row",
+        alignItems: "center",
+        width: "50%",
+        justifyContent: "space-between"
+    },
+    dailyText: {
+        fontSize: 16
     }
 });
 
