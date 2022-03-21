@@ -5,6 +5,11 @@ const screenWidth = Dimensions.get("screen").width;
 const isRTL = I18nManager.isRTL;
 
 const styles = StyleSheet.create({
+    centeredContainer: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center"
+    },
     headerContainer: {
         width: screenWidth - 32,
         flexDirection: "row",

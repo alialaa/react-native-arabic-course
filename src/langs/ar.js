@@ -27,7 +27,9 @@ export default {
     favorites: {
         title: "المفضلة",
         cancel: "الغاء",
-        searchPlaceholder: "ابحث عن مدن"
+        searchPlaceholder: "ابحث عن مدن",
+        noResults: "لا توجد نتائج",
+        searchHint: "اكتب اسم المكان واضغط على بحث."
     },
     settings: {
         title: "الاعدادات",

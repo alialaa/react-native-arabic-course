@@ -27,7 +27,9 @@ export default {
     favorites: {
         title: "Favorites",
         cancel: "Cancel",
-        searchPlaceholder: "Search for cities"
+        searchPlaceholder: "Search for cities",
+        noResults: "No results found",
+        searchHint: "Type location name and hit search."
     },
     settings: {
         title: "Settings",
