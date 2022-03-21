@@ -30,7 +30,14 @@ export default function FavoritesStackNavigator() {
                     headerBackVisible: false
                 }}
             />
-            <FavoritesStack.Screen name="LocationWeather" component={LocationWeather} />
+            <FavoritesStack.Screen
+                name="LocationWeather"
+                component={LocationWeather}
+                options={{
+                    headerShown: false,
+                    presentation: "modal"
+                }}
+            />
         </FavoritesStack.Navigator>
     );
 }

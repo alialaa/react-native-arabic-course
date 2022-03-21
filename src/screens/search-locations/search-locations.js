@@ -1,11 +1,12 @@
 import { useLayoutEffect, useState } from "react";
-import { View, ScrollView, ActivityIndicator } from "react-native";
+import { View, ScrollView, ActivityIndicator, TouchableHighlight } from "react-native";
 import { useTheme } from "@react-navigation/native";
 import { Text } from "@components";
 import { geocoding, getErrorMessage } from "@utils";
 import SearchHeader from "./search-header";
 import styles from "./search-locations.styles";
 import i18n from "@langs";
+import { useSettings } from "@contexts";
 
 export default function SearchLocations({ navigation }) {
     const [loading, setLoading] = useState(false);
@@ -13,6 +14,7 @@ export default function SearchLocations({ navigation }) {
     const [data, setData] = useState(null);
 
     const { colors } = useTheme();
+    const { settings } = useSettings();
 
     const fetchLocations = async q => {
         setLoading(true);
@@ -66,8 +68,33 @@ export default function SearchLocations({ navigation }) {
     }
 
     return (
-        <ScrollView keyboardDismissMode="on-drag">
-            <Text>{JSON.stringify(data)}</Text>
+        <ScrollView keyboardDismissMode="on-drag" contentContainerStyle={{ paddingVertical: 10 }}>
+            {data.map(result => {
+                const { lat, lon, name, country, state, local_names } = result;
+                let localName = name;
+                if (settings.lang === "ar" && local_names && local_names["ar"]) {
+                    localName = local_names["ar"];
+                }
+                return (
+                    <TouchableHighlight
+                        underlayColor={colors.border}
+                        onPress={() => {
+                            navigation.navigate("LocationWeather");
+                        }}
+                        key={`${lat}-${lon}`}
+                        style={{
+                            paddingVertical: 10,
+                            paddingHorizontal: 20
+                        }}
+                    >
+                        <Text style={{ fontSize: 16 }}>
+                            {localName}
+                            {state && `, ${state}`}
+                            {country && `, ${country}`}
+                        </Text>
+                    </TouchableHighlight>
+                );
+            })}
         </ScrollView>
     );
 }
