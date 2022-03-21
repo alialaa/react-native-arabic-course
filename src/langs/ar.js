@@ -26,7 +26,8 @@ export default {
     },
     favorites: {
         title: "المفضلة",
-        cancel: "الغاء"
+        cancel: "الغاء",
+        searchPlaceholder: "ابحث عن مدن"
     },
     settings: {
         title: "الاعدادات",

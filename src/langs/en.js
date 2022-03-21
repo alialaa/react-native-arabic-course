@@ -26,7 +26,8 @@ export default {
     },
     favorites: {
         title: "Favorites",
-        cancel: "Cancel"
+        cancel: "Cancel",
+        searchPlaceholder: "Search for cities"
     },
     settings: {
         title: "Settings",

@@ -1,40 +1,7 @@
-import { useLayoutEffect, useRef, useEffect } from "react";
-import { View, Dimensions, TextInput, TouchableOpacity } from "react-native";
+import { useLayoutEffect } from "react";
+import { View, ScrollView } from "react-native";
 import { Text } from "@components";
-import { DarkTheme } from "@config/navigator/navigator.styles";
-import i18n from "@langs";
-
-const screenWidth = Dimensions.get("screen").width;
-
-const SearchHeader = ({ navigation }) => {
-    const inputRef = useRef(null);
-    useEffect(() => {
-        inputRef.current.focus();
-    }, []);
-    return (
-        <View
-            style={{
-                width: screenWidth - 32,
-                height: 30,
-                flexDirection: "row",
-                alignItems: "center"
-            }}
-        >
-            <TextInput
-                ref={inputRef}
-                style={{
-                    flex: 1,
-                    height: 30,
-                    marginRight: 10,
-                    backgroundColor: "red"
-                }}
-            />
-            <TouchableOpacity onPress={() => navigation.goBack()}>
-                <Text style={{ color: DarkTheme.colors.text }}>{i18n.t("favorites.cancel")}</Text>
-            </TouchableOpacity>
-        </View>
-    );
-};
+import SearchHeader from "./search-header";
 
 export default function SearchLocations({ navigation }) {
     useLayoutEffect(() => {
@@ -43,8 +10,15 @@ export default function SearchLocations({ navigation }) {
         });
     }, [navigation]);
     return (
-        <View>
-            <Text>Search Locations</Text>
-        </View>
+        <ScrollView keyboardDismissMode="on-drag">
+            <View
+                style={{
+                    height: 1000,
+                    width: 50,
+                    backgroundColor: "red",
+                    marginBottom: 30
+                }}
+            />
+        </ScrollView>
     );
 }
