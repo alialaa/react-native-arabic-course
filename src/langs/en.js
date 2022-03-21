@@ -25,7 +25,8 @@ export default {
         openSettings: "Open Settings"
     },
     favorites: {
-        title: "Favorites"
+        title: "Favorites",
+        cancel: "Cancel"
     },
     settings: {
         title: "Settings",

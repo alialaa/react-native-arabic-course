@@ -25,7 +25,8 @@ export default {
         openSettings: "أفتح الإعدادات"
     },
     favorites: {
-        title: "المفضلة"
+        title: "المفضلة",
+        cancel: "الغاء"
     },
     settings: {
         title: "الاعدادات",
