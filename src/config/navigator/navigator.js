@@ -7,6 +7,7 @@ import { useSettings } from "@contexts";
 import i18n from "@langs";
 import { DarkTheme, LightTheme } from "./navigator.styles";
 import tabBarScreenOptions from "./tabbar-screen-options";
+import FavoritesStack from "./favorites-stack";
 
 const Tab = createBottomTabNavigator();
 
@@ -21,6 +22,13 @@ export default function Navigator() {
                     name="Home"
                     component={LocationWeather}
                     options={{ title: i18n.t("home.title") }}
+                />
+                <Tab.Screen
+                    name="Favorites"
+                    component={FavoritesStack}
+                    options={{
+                        title: i18n.t("favorites.title")
+                    }}
                 />
                 <Tab.Screen
                     name="Settings"

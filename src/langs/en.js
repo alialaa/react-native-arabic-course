@@ -24,6 +24,9 @@ export default {
         permissionError: "Please allow the app to use your current location.",
         openSettings: "Open Settings"
     },
+    favorites: {
+        title: "Favorites"
+    },
     settings: {
         title: "Settings",
         useDeviceColorScheme: "Use Device Color Scheme Settings",

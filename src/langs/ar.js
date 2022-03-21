@@ -24,6 +24,9 @@ export default {
         permissionError: "يرجى السماح للتطبيق باستخدام موقعك الحالي.",
         openSettings: "أفتح الإعدادات"
     },
+    favorites: {
+        title: "المفضلة"
+    },
     settings: {
         title: "الاعدادات",
         useDeviceColorScheme: "استخدام نمط الالوان من اعدادات الجهاز",

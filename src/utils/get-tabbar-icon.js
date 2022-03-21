@@ -4,6 +4,8 @@ const getTabBarIcon = (route, focused) => {
         iconName = focused ? "location" : "location-outline";
     } else if (route.name === "Settings") {
         iconName = focused ? "settings" : "settings-outline";
+    } else if (route.name === "Favorites") {
+        iconName = focused ? "heart" : "heart-outline";
     }
     return iconName;
 };
