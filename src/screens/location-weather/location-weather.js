@@ -8,16 +8,25 @@ import { openweathermap, getErrorMessage } from "@utils";
 import styles from "./location-weather.styles";
 import NoPermissions from "./no-permissions";
 
-export default function LocationWeather() {
+export default function LocationWeather({ route }) {
     const { colors } = useTheme();
     const { settings } = useSettings();
     const { granted, location } = useLocation();
     const [locationData, setLocationData] = useState(null);
     const [error, setError] = useState();
 
+    const customLocation = route.params && route.params.location;
+
     useEffect(() => {
-        if (location) {
-            const { latitude, longitude } = location.coords;
+        if (location || customLocation) {
+            let latitude, longitude;
+            if (customLocation) {
+                latitude = customLocation.lat;
+                longitude = customLocation.lon;
+            } else if (location) {
+                latitude = location.coords.latitude;
+                longitude = location.coords.longitude;
+            }
             openweathermap
                 .get("onecall", {
                     params: {
@@ -33,9 +42,9 @@ export default function LocationWeather() {
                     setError(getErrorMessage(err));
                 });
         }
-    }, [location, settings.units]);
+    }, [location, customLocation, settings.units]);
 
-    if (!granted) return <NoPermissions />;
+    if (!granted && !customLocation) return <NoPermissions />;
 
     if (error) {
         return (
@@ -46,7 +55,7 @@ export default function LocationWeather() {
         );
     }
 
-    if (location === null || locationData === null)
+    if ((location === null && !customLocation) || locationData === null)
         return (
             <View style={styles.centeredContainer}>
                 <ActivityIndicator color={colors.primary} />
@@ -58,7 +67,10 @@ export default function LocationWeather() {
             {locationData && (
                 <FullWeatherCard
                     locationData={locationData}
-                    locationName={location.locationNames && location.locationNames[settings.lang]}
+                    locationName={
+                        (customLocation && customLocation.localNames[settings.lang]) ||
+                        (location.locationNames && location.locationNames[settings.lang])
+                    }
                     lang={settings.lang}
                 />
             )}

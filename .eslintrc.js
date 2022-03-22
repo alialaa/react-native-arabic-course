@@ -23,6 +23,6 @@ module.exports = {
     rules: {
         "react/react-in-jsx-scope": "off",
         "no-console": "warn",
-        "react/prop-types": ["error", { ignore: ["navigation"] }]
+        "react/prop-types": ["error", { ignore: ["navigation", "route"] }]
     }
 };

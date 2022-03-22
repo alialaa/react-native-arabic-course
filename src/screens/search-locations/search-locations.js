@@ -79,7 +79,20 @@ export default function SearchLocations({ navigation }) {
                     <TouchableHighlight
                         underlayColor={colors.border}
                         onPress={() => {
-                            navigation.navigate("LocationWeather");
+                            navigation.navigate("LocationWeatherModal", {
+                                location: {
+                                    name,
+                                    lon,
+                                    lat,
+                                    localNames: {
+                                        en: name,
+                                        ar:
+                                            local_names && local_names["ar"]
+                                                ? local_names["ar"]
+                                                : name
+                                    }
+                                }
+                            });
                         }}
                         key={`${lat}-${lon}`}
                         style={{

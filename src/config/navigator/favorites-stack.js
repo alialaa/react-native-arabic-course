@@ -31,7 +31,7 @@ export default function FavoritesStackNavigator() {
                 }}
             />
             <FavoritesStack.Screen
-                name="LocationWeather"
+                name="LocationWeatherModal"
                 component={LocationWeather}
                 options={{
                     headerShown: false,
