@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
-import { View, FlatList, TouchableOpacity } from "react-native";
+import { View, FlatList, TouchableOpacity, Image } from "react-native";
 import { Text, Card } from "@components";
-import { openweathermap } from "@utils";
+import moment from "moment-timezone";
+import { Ionicons } from "@expo/vector-icons";
+import { openweathermap, displayTemperature, getBgColor, getWeatherIcon } from "@utils";
 import { useFavorites, useLocation, useSettings } from "@contexts";
 import styles from "./favorite-locations.styles";
+import { DarkTheme } from "@config/navigator/navigator.styles";
 
 export default function FavoriteLocations({ navigation }) {
     const { favorites } = useFavorites();
@@ -19,6 +22,7 @@ export default function FavoriteLocations({ navigation }) {
                     name: location.locationNames["en"],
                     lon: location.coords.longitude,
                     lat: location.coords.latitude,
+                    current: true,
                     localNames: {
                         en: location.locationNames["en"],
                         ar: location.locationNames["ar"] || location.locationNames["en"]
@@ -61,7 +65,11 @@ export default function FavoriteLocations({ navigation }) {
 
     const renderItem = ({ item }) => {
         const locationWeatherData = weatherData[`${item.lat}-${item.lon}`];
-        console.log(locationWeatherData);
+        const { current, timezone } = locationWeatherData || {};
+        const { dt, temp, sunrise, sunset, weather } = current || {};
+        const weatherIcon = weather && getWeatherIcon(weather[0].icon);
+        const bgColor =
+            dt && sunrise && sunset ? getBgColor(dt, sunrise, sunset) : DarkTheme.colors.card;
         return (
             <TouchableOpacity
                 onPress={() => {
@@ -70,10 +78,29 @@ export default function FavoriteLocations({ navigation }) {
                     });
                 }}
             >
-                <Card style={styles.card}>
+                <Card style={[styles.card, { backgroundColor: bgColor }]}>
                     <Text weight="700" style={styles.locationName}>
-                        {item.localNames[settings.lang]}
+                        {item.localNames[settings.lang]}{" "}
+                        {item.current && <Ionicons name="location" size={16} />}
                     </Text>
+                    {dt && (
+                        <Text>
+                            {moment(new Date(dt * 1000))
+                                .tz(timezone)
+                                .format("HH:mm")}
+                        </Text>
+                    )}
+                    {weather && <Text>{weather[0].description}</Text>}
+                    {weatherIcon && (
+                        <Image
+                            source={weatherIcon.source}
+                            style={{
+                                height: 30,
+                                width: 30 * (weatherIcon.width / weatherIcon.height)
+                            }}
+                        />
+                    )}
+                    {temp && <Text>{displayTemperature(temp, settings.lang)}</Text>}
                 </Card>
             </TouchableOpacity>
         );
