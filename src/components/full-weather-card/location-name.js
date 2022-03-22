@@ -7,11 +7,17 @@ import Text from "../text/text";
 import styles from "./full-weather-card.styles";
 import i18n from "@langs";
 
-export default function LocationName({ locationName, isModal, onToggleFavorite, isFavorite }) {
+export default function LocationName({
+    locationName,
+    isModal,
+    onToggleFavorite,
+    isFavorite,
+    isCustomLocation
+}) {
     const { goBack } = useNavigation();
     return (
         <View style={styles.locationNameContainer}>
-            {isModal && (
+            {(isModal || isCustomLocation) && (
                 <View style={{ width: "15%" }}>
                     <TouchableOpacity onPress={() => goBack()}>
                         <Text style={{ color: "#fff", fontSize: 16 }}>
@@ -20,7 +26,7 @@ export default function LocationName({ locationName, isModal, onToggleFavorite, 
                     </TouchableOpacity>
                 </View>
             )}
-            <View style={{ width: isModal ? "70%" : "100%" }}>
+            <View style={{ width: isModal || isCustomLocation ? "70%" : "100%" }}>
                 <Text
                     numberOfLines={1}
                     weight="700"
@@ -29,7 +35,7 @@ export default function LocationName({ locationName, isModal, onToggleFavorite, 
                     {locationName || i18n.t("weather.yourLocation")}
                 </Text>
             </View>
-            {isModal && (
+            {(isModal || isCustomLocation) && (
                 <View style={{ width: "15%", alignItems: "flex-end" }}>
                     <TouchableOpacity
                         onPress={() => {
@@ -55,5 +61,6 @@ LocationName.propTypes = {
     locationName: PropTypes.string,
     isModal: PropTypes.bool,
     isFavorite: PropTypes.bool,
+    isCustomLocation: PropTypes.bool,
     onToggleFavorite: PropTypes.func
 };

@@ -12,6 +12,7 @@ export default function FullWeatherCard({
     locationName,
     lang,
     isModal,
+    isCustomLocation,
     onToggleFavorite,
     isFavorite
 }) {
@@ -27,6 +28,7 @@ export default function FullWeatherCard({
                     isFavorite={isFavorite}
                     onToggleFavorite={onToggleFavorite}
                     isModal={isModal}
+                    isCustomLocation={isCustomLocation}
                     locationName={locationName}
                 />
             </HeaderTag>
@@ -46,6 +48,7 @@ FullWeatherCard.propTypes = {
     locationName: PropTypes.string,
     lang: PropTypes.string,
     isModal: PropTypes.bool,
+    isCustomLocation: PropTypes.bool,
     isFavorite: PropTypes.bool,
     onToggleFavorite: PropTypes.func
 };

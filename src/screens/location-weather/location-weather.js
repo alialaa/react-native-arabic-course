@@ -73,6 +73,7 @@ export default function LocationWeather({ route }) {
                     }}
                     isFavorite={isFavorite(customLocation)}
                     isModal={isModal}
+                    isCustomLocation={!!customLocation}
                     locationData={locationData}
                     locationName={
                         (customLocation && customLocation.localNames[settings.lang]) ||
