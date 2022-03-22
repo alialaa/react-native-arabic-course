@@ -67,6 +67,7 @@ export default function LocationWeather({ route }) {
         <View style={styles.container}>
             {locationData && (
                 <FullWeatherCard
+                    onToggleFavorite={() => alert(JSON.stringify(customLocation))}
                     isModal={isModal}
                     locationData={locationData}
                     locationName={

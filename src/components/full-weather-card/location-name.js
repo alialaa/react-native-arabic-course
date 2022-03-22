@@ -6,7 +6,7 @@ import Text from "../text/text";
 import styles from "./full-weather-card.styles";
 import i18n from "@langs";
 
-export default function LocationName({ locationName, isModal }) {
+export default function LocationName({ locationName, isModal, onToggleFavorite }) {
     const { goBack } = useNavigation();
     return (
         <View style={styles.locationNameContainer}>
@@ -30,7 +30,13 @@ export default function LocationName({ locationName, isModal }) {
             </View>
             {isModal && (
                 <View style={{ width: "15%", alignItems: "flex-end" }}>
-                    <TouchableOpacity>
+                    <TouchableOpacity
+                        onPress={() => {
+                            if (onToggleFavorite) {
+                                onToggleFavorite();
+                            }
+                        }}
+                    >
                         <Ionicons name="heart-outline" color="#fff" size={24} />
                     </TouchableOpacity>
                 </View>
@@ -41,5 +47,6 @@ export default function LocationName({ locationName, isModal }) {
 
 LocationName.propTypes = {
     locationName: PropTypes.string,
-    isModal: PropTypes.bool
+    isModal: PropTypes.bool,
+    onToggleFavorite: PropTypes.func
 };

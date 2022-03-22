@@ -7,7 +7,13 @@ import CurrentWeather from "./current-weather";
 import HourlyWeather from "./hourly-weather";
 import DailyWeather from "./daily-weather";
 import CurrentInfo from "./current-info";
-export default function FullWeatherCard({ locationData, locationName, lang, isModal }) {
+export default function FullWeatherCard({
+    locationData,
+    locationName,
+    lang,
+    isModal,
+    onToggleFavorite
+}) {
     const { current, hourly, timezone, daily } = locationData;
     const { dt, sunrise, sunset } = current;
 
@@ -16,7 +22,11 @@ export default function FullWeatherCard({ locationData, locationName, lang, isMo
     return (
         <View style={{ flex: 1 }}>
             <HeaderTag edges={["top"]} style={{ backgroundColor: getBgColor(dt, sunrise, sunset) }}>
-                <LocationName isModal={isModal} locationName={locationName} />
+                <LocationName
+                    onToggleFavorite={onToggleFavorite}
+                    isModal={isModal}
+                    locationName={locationName}
+                />
             </HeaderTag>
 
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
@@ -33,5 +43,6 @@ FullWeatherCard.propTypes = {
     locationData: PropTypes.object.isRequired,
     locationName: PropTypes.string,
     lang: PropTypes.string,
-    isModal: PropTypes.bool
+    isModal: PropTypes.bool,
+    onToggleFavorite: PropTypes.func
 };
