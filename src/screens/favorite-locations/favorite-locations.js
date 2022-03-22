@@ -14,6 +14,33 @@ export default function FavoriteLocations({ navigation }) {
     const { settings } = useSettings();
     const [data, setData] = useState([]);
     const [weatherData, setWeatherData] = useState({});
+    const [isRefreshing, setIsRefreshing] = useState(false);
+
+    const fetchData = async () => {
+        try {
+            const responses = await Promise.all(
+                data.map(location =>
+                    openweathermap.get("onecall", {
+                        params: {
+                            lat: location.lat,
+                            lon: location.lon,
+                            units: settings.units,
+                            lang: settings.lang,
+                            exclude: "minutely,hourly,daily"
+                        }
+                    })
+                )
+            );
+            let tempWeatherData = {};
+            responses.forEach((response, index) => {
+                tempWeatherData[`${data[index].lat}-${data[index].lon}`] = response.data;
+            });
+            setWeatherData(tempWeatherData);
+        } catch (error) {
+            // report
+        }
+        setIsRefreshing(false);
+    };
 
     useEffect(() => {
         if (granted && location) {
@@ -36,30 +63,6 @@ export default function FavoriteLocations({ navigation }) {
     }, [granted, location, favorites]);
 
     useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const responses = await Promise.all(
-                    data.map(location =>
-                        openweathermap.get("onecall", {
-                            params: {
-                                lat: location.lat,
-                                lon: location.lon,
-                                units: settings.units,
-                                lang: settings.lang,
-                                exclude: "minutely,hourly,daily"
-                            }
-                        })
-                    )
-                );
-                let tempWeatherData = {};
-                responses.forEach((response, index) => {
-                    tempWeatherData[`${data[index].lat}-${data[index].lon}`] = response.data;
-                });
-                setWeatherData(tempWeatherData);
-            } catch (error) {
-                // report
-            }
-        };
         if (data && data.length > 0) fetchData();
     }, [data, settings.units]);
 
@@ -137,6 +140,11 @@ export default function FavoriteLocations({ navigation }) {
             keyExtractor={item => `${item.lat}-${item.lon}`}
             renderItem={renderItem}
             contentContainerStyle={{ paddingVertical: 10 }}
+            refreshing={isRefreshing}
+            onRefresh={() => {
+                setIsRefreshing(true);
+                fetchData();
+            }}
         />
     );
 }
