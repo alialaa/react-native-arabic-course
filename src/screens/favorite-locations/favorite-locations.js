@@ -1,5 +1,6 @@
-import { useState, useEffect } from "react";
-import { View, FlatList, TouchableOpacity, Image } from "react-native";
+import { useState, useEffect, useCallback } from "react";
+import { View, FlatList, TouchableOpacity, Image, AppState } from "react-native";
+import { useFocusEffect } from "@react-navigation/native";
 import { Text, Card } from "@components";
 import moment from "moment-timezone";
 import { Ionicons } from "@expo/vector-icons";
@@ -62,9 +63,24 @@ export default function FavoriteLocations({ navigation }) {
         }
     }, [granted, location, favorites]);
 
+    useFocusEffect(
+        useCallback(() => {
+            if (data && data.length > 0) fetchData();
+        }, [data, settings.units])
+    );
+
     useEffect(() => {
-        if (data && data.length > 0) fetchData();
-    }, [data, settings.units]);
+        const handleAppStateChange = nextAppState => {
+            if (nextAppState === "active") {
+                if (data && data.length > 0) fetchData();
+            }
+        };
+        AppState.addEventListener("change", handleAppStateChange);
+
+        return () => {
+            AppState.removeEventListener("change", handleAppStateChange);
+        };
+    }, []);
 
     const renderItem = ({ item }) => {
         const locationWeatherData = weatherData[`${item.lat}-${item.lon}`];
