@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { ScrollView, View } from "react-native";
+import { ScrollView, View, Platform } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { getBgColor } from "@utils";
 import LocationName from "./location-name";
@@ -7,18 +7,17 @@ import CurrentWeather from "./current-weather";
 import HourlyWeather from "./hourly-weather";
 import DailyWeather from "./daily-weather";
 import CurrentInfo from "./current-info";
-export default function FullWeatherCard({ locationData, locationName, lang }) {
+export default function FullWeatherCard({ locationData, locationName, lang, isModal }) {
     const { current, hourly, timezone, daily } = locationData;
     const { dt, sunrise, sunset } = current;
 
+    const HeaderTag = isModal && Platform.OS === "ios" ? View : SafeAreaView;
+
     return (
         <View style={{ flex: 1 }}>
-            <SafeAreaView
-                edges={["top"]}
-                style={{ backgroundColor: getBgColor(dt, sunrise, sunset) }}
-            >
-                <LocationName locationName={locationName} />
-            </SafeAreaView>
+            <HeaderTag edges={["top"]} style={{ backgroundColor: getBgColor(dt, sunrise, sunset) }}>
+                <LocationName isModal={isModal} locationName={locationName} />
+            </HeaderTag>
 
             <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
                 <CurrentWeather locationData={locationData} lang={lang} />
@@ -33,5 +32,6 @@ export default function FullWeatherCard({ locationData, locationName, lang }) {
 FullWeatherCard.propTypes = {
     locationData: PropTypes.object.isRequired,
     locationName: PropTypes.string,
-    lang: PropTypes.string
+    lang: PropTypes.string,
+    isModal: PropTypes.bool
 };

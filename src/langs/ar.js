@@ -29,7 +29,8 @@ export default {
         cancel: "الغاء",
         searchPlaceholder: "ابحث عن مدن",
         noResults: "لا توجد نتائج",
-        searchHint: "اكتب اسم المكان واضغط على بحث."
+        searchHint: "اكتب اسم المكان واضغط على بحث.",
+        back: "العودة"
     },
     settings: {
         title: "الاعدادات",

@@ -16,6 +16,7 @@ export default function LocationWeather({ route }) {
     const [error, setError] = useState();
 
     const customLocation = route.params && route.params.location;
+    const isModal = route.name === "LocationWeatherModal";
 
     useEffect(() => {
         if (location || customLocation) {
@@ -66,6 +67,7 @@ export default function LocationWeather({ route }) {
         <View style={styles.container}>
             {locationData && (
                 <FullWeatherCard
+                    isModal={isModal}
                     locationData={locationData}
                     locationName={
                         (customLocation && customLocation.localNames[settings.lang]) ||

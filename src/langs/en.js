@@ -29,7 +29,8 @@ export default {
         cancel: "Cancel",
         searchPlaceholder: "Search for cities",
         noResults: "No results found",
-        searchHint: "Type location name and hit search."
+        searchHint: "Type location name and hit search.",
+        back: "Back"
     },
     settings: {
         title: "Settings",

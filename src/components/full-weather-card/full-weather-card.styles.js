@@ -2,9 +2,11 @@ import { StyleSheet } from "react-native";
 
 const styles = StyleSheet.create({
     locationNameContainer: {
+        flexDirection: "row",
+        justifyContent: "space-between",
         alignItems: "center",
-        padding: 10,
-        paddingTop: 20
+        paddingHorizontal: 20,
+        paddingVertical: 15
     },
     currentWeatherText: {
         color: "#fff",
@@ -14,7 +16,8 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: 1, height: 1 }
     },
     locationNameText: {
-        fontSize: 28
+        fontSize: 28,
+        textAlign: "center"
     },
     gradient: {
         position: "absolute",
