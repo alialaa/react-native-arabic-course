@@ -3,7 +3,7 @@ import { View, ActivityIndicator } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useTheme } from "@react-navigation/native";
 import { Text, FullWeatherCard } from "@components";
-import { useLocation, useSettings } from "@contexts";
+import { useLocation, useSettings, useFavorites } from "@contexts";
 import { openweathermap, getErrorMessage } from "@utils";
 import styles from "./location-weather.styles";
 import NoPermissions from "./no-permissions";
@@ -11,6 +11,7 @@ import NoPermissions from "./no-permissions";
 export default function LocationWeather({ route }) {
     const { colors } = useTheme();
     const { settings } = useSettings();
+    const { toggleFavorites, isFavorite } = useFavorites();
     const { granted, location } = useLocation();
     const [locationData, setLocationData] = useState(null);
     const [error, setError] = useState();
@@ -67,7 +68,10 @@ export default function LocationWeather({ route }) {
         <View style={styles.container}>
             {locationData && (
                 <FullWeatherCard
-                    onToggleFavorite={() => alert(JSON.stringify(customLocation))}
+                    onToggleFavorite={() => {
+                        toggleFavorites(customLocation);
+                    }}
+                    isFavorite={isFavorite(customLocation)}
                     isModal={isModal}
                     locationData={locationData}
                     locationName={

@@ -12,11 +12,33 @@ export function useFavorites() {
 
 export function FavoritesProvider(props) {
     const [favorites, setFavorites] = useState([]);
+
+    const isFavorite = location => {
+        if (!location) return;
+        const index = favorites.findIndex(l => l.lat === location.lat && l.lon === location.lon);
+        return index !== -1;
+    };
+
+    const toggleFavorites = location => {
+        const index = favorites.findIndex(l => l.lat === location.lat && l.lon === location.lon);
+        if (index === -1) {
+            setFavorites([...favorites, location]);
+        } else {
+            setFavorites(
+                favorites.filter((l, i) => {
+                    return i !== index;
+                })
+            );
+        }
+    };
+    console.log(favorites);
     return (
         <FavoritesContext.Provider
             {...props}
             value={{
-                favorites
+                favorites,
+                isFavorite,
+                toggleFavorites
             }}
         />
     );

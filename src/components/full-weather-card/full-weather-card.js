@@ -12,7 +12,8 @@ export default function FullWeatherCard({
     locationName,
     lang,
     isModal,
-    onToggleFavorite
+    onToggleFavorite,
+    isFavorite
 }) {
     const { current, hourly, timezone, daily } = locationData;
     const { dt, sunrise, sunset } = current;
@@ -23,6 +24,7 @@ export default function FullWeatherCard({
         <View style={{ flex: 1 }}>
             <HeaderTag edges={["top"]} style={{ backgroundColor: getBgColor(dt, sunrise, sunset) }}>
                 <LocationName
+                    isFavorite={isFavorite}
                     onToggleFavorite={onToggleFavorite}
                     isModal={isModal}
                     locationName={locationName}
@@ -44,5 +46,6 @@ FullWeatherCard.propTypes = {
     locationName: PropTypes.string,
     lang: PropTypes.string,
     isModal: PropTypes.bool,
+    isFavorite: PropTypes.bool,
     onToggleFavorite: PropTypes.func
 };
