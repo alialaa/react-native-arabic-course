@@ -1,4 +1,7 @@
+import { Alert } from "react-native";
 import { createContext, useContext, useEffect, useState } from "react";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import i18n from "@langs";
 
 const FavoritesContext = createContext();
 
@@ -12,6 +15,31 @@ export function useFavorites() {
 
 export function FavoritesProvider(props) {
     const [favorites, setFavorites] = useState([]);
+
+    useEffect(() => {
+        const loadFavorites = async () => {
+            try {
+                const loadedFavorites = await AsyncStorage.getItem("@favorites");
+                if (loadFavorites !== null) {
+                    setFavorites(JSON.parse(loadedFavorites));
+                }
+            } catch {
+                // report
+            }
+        };
+        loadFavorites();
+    }, []);
+
+    useEffect(() => {
+        const saveFavorites = async () => {
+            try {
+                await AsyncStorage.setItem("@favorites", JSON.stringify(favorites));
+            } catch {
+                Alert.alert(i18n.t("errors.error"), i18n.t("errors.generalError"));
+            }
+        };
+        if (favorites) saveFavorites();
+    }, [favorites]);
 
     const isFavorite = location => {
         if (!location) return;
