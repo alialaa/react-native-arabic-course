@@ -47,7 +47,12 @@ export default function CurrentWeather({ locationData, lang }) {
                     </Text>
                 </View>
 
-                <Text style={[styles.currentWeatherText, { marginBottom: 5 }]}>
+                <Text
+                    style={[
+                        styles.currentWeatherText,
+                        { marginBottom: 5, textTransform: "capitalize" }
+                    ]}
+                >
                     {weather[0].description}
                 </Text>
                 <View style={{ flexDirection: "row" }}>

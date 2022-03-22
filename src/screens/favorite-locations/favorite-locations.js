@@ -79,28 +79,54 @@ export default function FavoriteLocations({ navigation }) {
                 }}
             >
                 <Card style={[styles.card, { backgroundColor: bgColor }]}>
-                    <Text weight="700" style={styles.locationName}>
-                        {item.localNames[settings.lang]}{" "}
-                        {item.current && <Ionicons name="location" size={16} />}
-                    </Text>
-                    {dt && (
-                        <Text>
-                            {moment(new Date(dt * 1000))
-                                .tz(timezone)
-                                .format("HH:mm")}
+                    <View style={{ width: "60%", alignItems: "flex-start" }}>
+                        <Text
+                            numberOfLines={1}
+                            weight="700"
+                            style={[styles.text, styles.locationName]}
+                        >
+                            {item.localNames[settings.lang]}{" "}
+                            {item.current && <Ionicons name="location" size={16} />}
                         </Text>
-                    )}
-                    {weather && <Text>{weather[0].description}</Text>}
-                    {weatherIcon && (
-                        <Image
-                            source={weatherIcon.source}
-                            style={{
-                                height: 30,
-                                width: 30 * (weatherIcon.width / weatherIcon.height)
-                            }}
-                        />
-                    )}
-                    {temp && <Text>{displayTemperature(temp, settings.lang)}</Text>}
+                        {dt && (
+                            <Text weight="600" style={[styles.text, styles.time]}>
+                                {moment(new Date(dt * 1000))
+                                    .tz(timezone)
+                                    .format("HH:mm")}
+                            </Text>
+                        )}
+                        {weather && (
+                            <Text weight="600" style={[styles.text, styles.description]}>
+                                {weather[0].description}
+                            </Text>
+                        )}
+                    </View>
+                    <View
+                        style={{
+                            flexDirection: "row",
+                            alignItems: "center",
+                            width: "40%",
+                            justifyContent: "flex-end"
+                        }}
+                    >
+                        {weatherIcon && (
+                            <Image
+                                source={weatherIcon.source}
+                                style={[
+                                    styles.icon,
+                                    {
+                                        height: 30,
+                                        width: 30 * (weatherIcon.width / weatherIcon.height)
+                                    }
+                                ]}
+                            />
+                        )}
+                        {temp && (
+                            <Text weight="700" style={[styles.text, styles.temp]}>
+                                {displayTemperature(temp, settings.lang)}
+                            </Text>
+                        )}
+                    </View>
                 </Card>
             </TouchableOpacity>
         );
