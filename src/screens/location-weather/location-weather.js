@@ -4,7 +4,7 @@ import { StatusBar } from "expo-status-bar";
 import { useTheme } from "@react-navigation/native";
 import { Text, FullWeatherCard } from "@components";
 import { useLocation, useSettings, useFavorites } from "@contexts";
-import { openweathermap, getErrorMessage } from "@utils";
+import { openweathermap, getErrorMessage, getEnvironment } from "@utils";
 import styles from "./location-weather.styles";
 import NoPermissions from "./no-permissions";
 
@@ -82,6 +82,7 @@ export default function LocationWeather({ route }) {
                     lang={settings.lang}
                 />
             )}
+            <Text>{getEnvironment()}</Text>
         </View>
     );
 }

@@ -6,3 +6,4 @@ export { default as toArabicNumerals } from "./to-arabic-numerals";
 export { default as displayNumber } from "./display-number";
 export { default as displayTemperature } from "./display-temperature";
 export { default as getWeatherIcon } from "./get-weather-icon";
+export { default as getEnvironment } from "./get-environment";
