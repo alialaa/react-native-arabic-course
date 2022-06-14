@@ -1,0 +1,4 @@
+{
+    "CFBundleDisplayName": "AA Weather App",
+    "NSLocationWhenInUseUsageDescription": "Allow app to access your location to fetch your local weather."
+}

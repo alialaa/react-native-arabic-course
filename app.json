@@ -1,7 +1,7 @@
 {
     "expo": {
-        "name": "my-app",
-        "slug": "my-app",
+        "name": "AA Weather App",
+        "slug": "aa-weather-app",
         "version": "1.0.0",
         "orientation": "portrait",
         "icon": "./assets/icon.png",
@@ -16,9 +16,21 @@
         },
         "assetBundlePatterns": ["**/*"],
         "ios": {
-            "supportsTablet": true
+            "supportsTablet": true,
+            "bundleIdentifier": "com.alialaa.aaweatherapp",
+            "buildNumber": "1.0.0",
+            "infoPlist": {
+                "CFBundleAllowMixedLocalizations": true
+            }
+        },
+        "locales": {
+            "en": "./languages/en.json",
+            "ar": "./languages/ar.json"
         },
         "android": {
+            "package": "com.alialaa.aaweatherapp",
+            "versionCode": 1,
+            "permissions": ["ACCESS_COARSE_LOCATION", "ACCESS_FINE_LOCATION", "VIBRATE"],
             "adaptiveIcon": {
                 "foregroundImage": "./assets/adaptive-icon.png",
                 "backgroundColor": "#FFFFFF"
